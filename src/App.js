@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import './Chat'
+import Chatbox from './Chat';
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Chatbox/>
     </div>
   );
 }
