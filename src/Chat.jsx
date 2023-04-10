@@ -1,5 +1,6 @@
 import React , { useState } from "react";
 import './index.css'
+import { AiOutlineWechat } from 'react-icons/ai'
 
 export default function Chatbox() {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +60,11 @@ export default function Chatbox() {
       </div>
       <div className="chatbox__button">
           <button onClick={toggleChatbox}>
-            <img src="{{ url_for('static', filename='images/chatbox-icon.svg') }}" alt="chatbox icon" />
+          <AiOutlineWechat style={{
+            fontSize: '2rem',
+            color: '#0d348a',
+            
+          }}/>
           </button>
         </div>
         </>
