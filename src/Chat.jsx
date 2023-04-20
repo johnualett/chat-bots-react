@@ -1,6 +1,9 @@
-import React , { useState } from "react";
+import React , { useEffect, useState, useRef } from "react";
 import './index.css'
 import { AiOutlineWechat } from 'react-icons/ai'
+import axios from "axios";
+const API_URL = "http://127.0.0.1:4040/chat"
+
 
 export default function Chatbox() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +19,19 @@ export default function Chatbox() {
   };
 
   const handleSendMessage = () => {
-    setMessages((prevMessages) => [...prevMessages, inputValue]);
+    setMessages((prevMessages) => [ inputValue,...prevMessages]);
+    (async() => {
+      try {
+        const { data: { response }} = await axios.post(API_URL, {
+          question: inputValue
+        })
+        setMessages((prevMessages) => [response,...prevMessages])
+        console.log(response.split(":")[0] === 'Veronica',response.split(":")[0])
+      }
+      catch (e) {
+        console.log(e)
+      }
+    })()
     setInputValue("");
   };
 
@@ -39,11 +54,11 @@ export default function Chatbox() {
             </div>
           </div>
           <div className="chatbox__messages">
-            {messages.map((message, index) => (
-              <div key={index} className="messages__item messages__item--operator">
-                {message}
-              </div>
-            ))}
+            {messages.map((message = '', index) => 
+              (<div key={index} className={`messages__item messages__item--operator ${message.split(":")[0] === 'Veronica' ? ' messages__item--bot': ' messages__item--my'}`}>
+                  {message.split(":")[0] === 'Veronica' ? message.split(":")[1]  : message}
+                </div>)
+            )}
           </div>
           <div className="chatbox__footer">
             <input

@@ -31,6 +31,7 @@ body {
     --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
     --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
     --primary: #0d348a;
+    --secondary: #6b8bd0;
 }
 /* CHATBOX
 =============== */
@@ -100,9 +101,21 @@ body {
     width: fit-content;
 }
 
-.messages__item--operator {
+.messages__item--my{
     margin-left: auto;
+    border-bottom-left-radius: 20px;
+    background-color: var(--primary) !important;
+    color: #fff;
 }
+
+.messages__item--bot{
+    margin-right: auto;
+    border-bottom-right-radius: 20px;
+    background-color: var(--secondary) !important;
+    color: #000;
+}
+
+
 
 .messages__item--visitor {
     margin-right: auto;
@@ -172,9 +185,6 @@ body {
 .messages__item--operator {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    background: var(--primary);
-    color: white;
 }
 
 /* FOOTER */
