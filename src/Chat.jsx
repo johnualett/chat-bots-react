@@ -18,7 +18,8 @@ export default function Chatbox() {
     setInputValue(event.target.value);
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = (event) => {
+    event.preventDefault();
     setMessages((prevMessages) => [ inputValue,...prevMessages]);
     (async() => {
       try {
@@ -61,15 +62,18 @@ export default function Chatbox() {
             )}
           </div>
           <div className="chatbox__footer">
+            
+            <form onSubmit={handleSendMessage}>
             <input
               type="text"
               placeholder="Write a message..."
               value={inputValue}
               onChange={handleInputChange}
             />
-            <button className="chatbox__send--footer send__button" onClick={handleSendMessage}>
+              <button  className="chatbox__send--footer send__button">
               Send
             </button>
+            </form>
           </div>
         </div>
       </div>
